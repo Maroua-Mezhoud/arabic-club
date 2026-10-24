@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الانضمام إلى النادي · نادي اللغة العربية</title>
+<meta name="description" content="استمارة طلب عضوية في نادي اللغة العربية.">
+<meta name="theme-color" content="#0d1a16">
+<meta property="og:type" content="website">
+<meta property="og:title" content="الانضمام إلى النادي · نادي اللغة العربية">
+<meta property="og:description" content="استمارة طلب عضوية في نادي اللغة العربية.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Cinzel:wght@400;600&family=Reem+Kufi:wght@400;600&family=Katibeh&family=Lateef&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#content">تخطَّ إلى المحتوى</a>
+<nav aria-label="القائمة الرئيسية"><div class="tl"><button class="menu-btn" aria-label="القائمة" aria-expanded="false">☰</button></div><div class="lk"><a href="index.html">الرئيسية</a><a href="index.html#about">عن النادي</a><a href="index.html#fields">مجالاتنا</a><a href="index.html#events">الفعاليات</a><a href="index.html#lessons">الورشات</a><a href="index.html#works">معرض الأعمال</a><a class="on" aria-current="page" href="join.html">انضم إلينا</a></div><a class="lg" href="index.html" aria-label="نادي اللغة العربية"><svg viewBox="0 0 50 50" fill="none" stroke="#cdb07a" stroke-width="1.2" aria-hidden="true"><circle cx="25" cy="25" r="23"/><path d="M25 6l4 14-1 14h-6l-1-14z"/><path d="M14 38c6 6 16 6 22 0"/></svg>ARABIC LANGUAGE CLUB</a></nav>
+<main id="content">
+<section class="sec" id="join" style="min-height:80vh;margin-top:calc(76px + env(safe-area-inset-top,0px))"><div class="w rv">
+<a href="index.html" class="bk">‹ العودة إلى الرئيسية</a>
+<div class="st"><div class="lb">كن واحدًا منا</div><h1>انضم إلى النادي</h1><i></i></div>
+<div class="steps"><div><b>١</b>تملأ الاستمارة</div><div><b>٢</b>يراجعها رؤساء النادي</div><div><b>٣</b>يصلك قرار القبول</div></div>
+<form id="f" autocomplete="on">
+<h3>استمارة طلب عضوية</h3>
+<label class="sr" for="fullname">الاسم واللقب</label><input id="fullname" name="fullname" required autocomplete="name" placeholder="الاسم واللقب">
+<label class="sr" for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="البريد الإلكتروني">
+<label class="sr" for="phone">رقم الهاتف</label><input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+\s]{8,15}" placeholder="رقم الهاتف">
+<label class="sr" for="student_id">رقم التسجيل الجامعي</label><input id="student_id" name="student_id" required placeholder="رقم التسجيل الجامعي">
+<label class="sr" for="level">المستوى الدراسي</label><select id="level" name="level" required><option value="" disabled selected>المستوى الدراسي</option><option>السنة الأولى</option><option>السنة الثانية</option><option>السنة الثالثة</option><option>ماستر / دراسات عليا</option></select>
+<label class="sr" for="interest">مجال الاهتمام</label><select id="interest" name="interest" required><option value="" disabled selected>مجال الاهتمام</option><option>الخط العربي</option><option>الشعر والأدب</option><option>النحو والبلاغة</option><option>الخطابة والإلقاء</option><option>القراءة والكتب</option><option>الكتابة والإبداع</option></select>
+<label class="sr" for="message">لماذا تريد الانضمام؟</label><textarea id="message" name="message" class="wd" placeholder="لماذا تريد الانضمام؟ (اختياري)"></textarea>
+<p class="err" id="err" role="alert" hidden>تعذّر إرسال الطلب، حاول مرة أخرى.</p>
+<button class="btn" type="submit">أرسل الطلب</button>
+</form>
+<div id="ok" role="status">وصلنا طلبك ✦<small>سيراجعه رؤساء النادي قريبًا</small></div>
+</div></section>
+</main>
+<footer>
+<b>نادي اللغة العربية</b>لغتنا... هويتنا
+<div class="credit">صُنع من طرف <a href="https://www.instagram.com/riwaq.midad/" target="_blank" rel="noopener">رواق مداد · @riwaq.midad</a></div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/join.js"></script>
+</body>
+</html>
