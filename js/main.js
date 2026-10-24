@@ -65,3 +65,26 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+/* عرض الصورة بحجمها الكامل (عناصر .pl في صفحة المعرض) */
+(() => {
+  let lx;
+  const make = () => {
+    lx = document.createElement('div');
+    lx.className = 'lx';
+    lx.setAttribute('role', 'dialog');
+    lx.setAttribute('aria-modal', 'true');
+    lx.innerHTML = '<img alt="">';
+    document.body.appendChild(lx);
+    lx.addEventListener('click', () => lx.classList.remove('o'));
+  };
+  document.addEventListener('click', e => {
+    const box = e.target.closest('.pl'), img = box && $('img', box);
+    if (!img) return;
+    if (!lx) make();
+    lx.firstChild.src = img.src;
+    lx.firstChild.alt = img.alt;
+    requestAnimationFrame(() => lx.classList.add('o'));
+  });
+  addEventListener('keydown', e => e.key === 'Escape' && lx && lx.classList.remove('o'));
+})();

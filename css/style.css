@@ -432,7 +432,7 @@ h1 {
   margin:8px 0 14px;
 }
 
-.sl a {
+.sl .more {
   color:#e6dac0;
   font:400 .95rem 'Tajawal';
   border-bottom:1px solid #cdb07a;
@@ -602,22 +602,7 @@ h1 {
   cursor:pointer;
 }
 
-.pl div {
-  position:absolute;
-  inset:16% 10%;
-  background:linear-gradient(135deg,#dcc79b,#ac8c5c);
-  transform:rotate(-6deg);
-  display:grid;
-  place-items:center;
-  font-size:3.6rem;
-  color:#22150a;
-  transition:.7s;
-  box-shadow:0 12px 26px rgba(0,0,0,.6);
-}
 
-.pl:hover div {
-  transform:rotate(0) scale(1.12);
-}
 
 .pl span {
   position:absolute;
@@ -634,75 +619,15 @@ h1 {
   opacity:1;
 }
 
-.lib {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px;
-  align-items:center;
-}
 
-.bks {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
 
-.cov {
-  aspect-ratio:3/4;
-  border:1px solid #cdb07a;
-  outline:1px solid rgba(205,176,122,.5);
-  outline-offset:-8px;
-  padding:18px;
-  background:linear-gradient(145deg,var(--c),#120b06);
-  display:grid;
-  align-content:space-between;
-  justify-items:center;
-  text-align:center;
-  color:#e8cf97;
-  font:700 1.25rem/1.5 'Aref Ruqaa';
-  transition:.5s;
-  cursor:pointer;
-  box-shadow:6px 6px 0 rgba(0,0,0,.35);
-}
 
-.cov em {
-  font:normal 3.4rem/1 'Aref Ruqaa';
-  transition:.8s;
-}
 
-.cov:hover {
-  transform:translateY(-10px) rotate(-1.5deg);
-}
 
-.cov:hover em {
-  transform:scale(1.2);
-}
 
-.pm {
-  border:1px solid #cdb07a;
-  padding:36px 22px;
-  text-align:center;
-  font:1.5rem/2.5 'Aref Ruqaa';
-  background:rgba(205,176,122,.06);
-}
 
-.pm .b {
-  display:grid;
-  grid-template-columns:1fr 30px 1fr;
-  gap:6px;
-}
 
-.pm i {
-  color:#cdb07a;
-  font:normal 1.4rem 'Amiri';
-}
 
-.pm small {
-  display:block;
-  font:300 .95rem 'Tajawal';
-  color:#cdb07a;
-  margin-top:8px;
-}
 
 .steps {
   display:flex;
@@ -911,9 +836,6 @@ footer b {
     border:0;
   }
   .intro {
-    grid-template-columns:1fr;
-  }
-  .lib {
     grid-template-columns:1fr;
   }
   .wel {
@@ -1302,7 +1224,7 @@ form textarea:focus {
   outline-offset:3px;
 }
 
-@media(max-width:860px) {
+@media(max-width:1080px) {
   .tl {
     display:flex;
   }
@@ -1336,3 +1258,133 @@ form textarea:focus {
     scroll-behavior:auto!important;
   }
 }
+
+/* ---------- رف الأقسام: كتب جلدية بـ CSS فقط ----------
+   كل كتاب: وجه أمامي (الجلد) + وجه علوي (الصفحات) + وجه جانبي، بإسقاط مائل يوحي بالعمق.
+   المتغيرات لكل كتاب (تأتي من home.js): --c اللون  --w العرض  --h الارتفاع  --d العمق  --r الميل  --x الإزاحة */
+.shelf {
+  --s: 1;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
+  max-width: 100%; padding-top: 38px; row-gap: 34px; column-gap: 0; /* فراغ بين الألواح عند الالتفاف على الهاتف */
+  background: radial-gradient(ellipse 60% 55% at 50% 100%, rgba(224,184,90,.13), transparent 70%);
+}
+.row { position: relative; display: flex; align-items: flex-end; gap: 14px; padding: 0 26px 22px; }
+.row::after { /* لوح الخشب */
+  content: ""; position: absolute; inset: auto 0 0; height: 22px;
+  background: linear-gradient(#80552f, #58381d 55%, #3a2210);
+  box-shadow: inset 0 2px 0 rgba(255,225,170,.28), 0 16px 20px -8px rgba(0,0,0,.75);
+}
+.row.low { padding-inline: 30px; }
+.stk { display: flex; flex-direction: column-reverse; align-items: flex-start; }
+
+.sp {
+  --w: 70px; --h: 300px; --d: 14px; --r: 0deg; --x: 0px; --lift: 70px; --tilt: 0deg;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .26 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  --shine: linear-gradient(90deg, rgba(255,255,255,.14), rgba(255,255,255,0) 24%, rgba(0,0,0,0) 62%, rgba(0,0,0,.5));
+  position: relative; flex: none; padding: 0; border: 0; cursor: pointer; color: #f0dcae;
+  width: calc(var(--w) * var(--s)); height: calc(var(--h) * var(--s));
+  border-radius: 2px 2px 0 0;
+  background: var(--shine), var(--grain), var(--c);
+  transform-origin: bottom right;
+  transform: translate(var(--x), var(--lift)) rotate(calc(var(--r) + var(--tilt)));
+  transition: transform .6s cubic-bezier(.2,.9,.3,1), opacity .9s, filter .5s;
+  filter: drop-shadow(9px 7px 7px rgba(0,0,0,.5));
+  opacity: 0;
+}
+/* الوجه العلوي: حدّ الصفحات بين غطاءين */
+.sp::before {
+  content: ""; position: absolute; left: 0; bottom: 100%; width: 100%; height: calc(var(--d) * var(--s));
+  transform-origin: bottom right; transform: skewX(45deg);
+  background: repeating-linear-gradient(90deg, rgba(90,60,20,.22) 0 1px, transparent 1px 3px),
+              linear-gradient(90deg, var(--c) 0 11%, #efe2c0 11% 89%, var(--c) 89%);
+}
+/* الوجه الجانبي: الغلاف من الجهة الأخرى، أغمق لإحساس الظل */
+.sp::after {
+  content: ""; position: absolute; right: 100%; top: 0; width: calc(var(--d) * var(--s)); height: 100%;
+  transform-origin: top right; transform: skewY(45deg);
+  background: linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,.25)), var(--grain), var(--c);
+}
+.sp.up, .sp.lean { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: calc(46px * var(--s)) 0; }
+.sp.lean { margin-right: calc(var(--h) * var(--s) * .135 - 6px); } /* فراغ مثلثي أسفل الكتاب المائل */
+
+/* الشرائط الذهبية البارزة (كعوب الكتاب) والزخرفة والعنوان */
+.sp .bd {
+  position: absolute; inset-inline: 0; height: calc(15px * var(--s)); border-block: 1px solid #e0b45a;
+  background: linear-gradient(rgba(0,0,0,.28), rgba(255,255,255,.06) 45%, rgba(0,0,0,.32));
+  box-shadow: 0 1px 0 rgba(0,0,0,.55), inset 0 1px 0 rgba(255,236,170,.45);
+}
+.sp .bd::after { content: ""; position: absolute; inset: 3px 0; border-block: 1px solid rgba(224,184,90,.5); }
+.sp .bd.t { top: calc(14px * var(--s)); }
+.sp .bd.u { bottom: calc(14px * var(--s)); }
+.sp em { display: block; flex: none; width: calc(26px * var(--s)); aspect-ratio: 1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none' stroke='%23e0b45a' stroke-width='1.6'%3E%3Crect x='9' y='9' width='22' height='22'/%3E%3Crect x='9' y='9' width='22' height='22' transform='rotate(45 20 20)'/%3E%3Ccircle cx='20' cy='20' r='4'/%3E%3C/svg%3E") center / contain no-repeat; }
+.sp b {
+  writing-mode: vertical-rl; flex: 1; display: grid; place-items: center;
+  font: 700 calc(var(--w) * var(--s) * .27) / 1.25 'Aref Ruqaa', serif; color: #f1dfb0;
+  text-shadow: 0 1px 1px rgba(0,0,0,.8), 0 0 6px rgba(224,184,90,.25);
+}
+
+/* الكتب الأفقية: العنوان أفقي، والغطاء الأعلى مرئي، والصفحات على الجانب */
+.sp.flat {
+  --shine: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0) 35%, rgba(0,0,0,.45));
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 calc(40px * var(--s));
+}
+.sp.flat::before { background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.3)), var(--grain), var(--c); box-shadow: inset 0 0 0 1px rgba(224,184,90,.55); }
+.sp.flat::after { background: repeating-linear-gradient(180deg, rgba(90,60,20,.22) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--c) 0 16%, #efe2c0 16% 84%, var(--c) 84%); }
+.sp.flat b { writing-mode: horizontal-tb; flex: none; display: block; font-size: calc(var(--h) * var(--s) * .4); }
+.sp.flat .bd {
+  inset: 0 auto; width: calc(14px * var(--s)); height: auto; border-block: 0; border-inline: 1px solid #e0b45a;
+  background: linear-gradient(90deg, rgba(0,0,0,.28), rgba(255,255,255,.06) 45%, rgba(0,0,0,.32));
+  box-shadow: 1px 0 0 rgba(0,0,0,.55), inset 1px 0 0 rgba(255,236,170,.45);
+}
+.sp.flat .bd::after { inset: 0 3px; border-block: 0; border-inline: 1px solid rgba(224,184,90,.5); }
+.sp.flat .bd.t { top: 0; right: calc(14px * var(--s)); }
+.sp.flat .bd.u { top: 0; bottom: 0; left: calc(14px * var(--s)); }
+
+/* الظهور والتفاعل: ارتفاع بسيط + ميل خفيف + انتقال سلس */
+.rv.in .shelf .sp { opacity: 1; --lift: 0px; }
+@media (hover: hover) {
+  .rv.in .shelf .sp:hover { --lift: -14px; --tilt: -1.6deg; z-index: 3; }
+  .rv.in .shelf .sp.flat:hover { --lift: -8px; --tilt: -.8deg; }
+}
+.rv.in .shelf .sp.on {
+  --lift: -24px; --tilt: -2.5deg; z-index: 3;
+  filter: drop-shadow(9px 9px 8px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(224,184,90,.42));
+}
+.rv.in .shelf .sp.flat.on { --lift: -10px; --tilt: -1deg; }
+.sp:focus-visible { outline: 2px solid #e8cf97; outline-offset: 8px; }
+
+/* الهاتف: تصغير الكتب مع بقاء العناوين مقروءة، وانتقال الكتب الأفقية إلى لوح ثانٍ عند ضيق المكان */
+@media (max-width: 560px) {
+  .shelf { --s: .78; padding-top: 24px; }
+  .row { gap: 9px; padding: 0 14px 22px; }
+  .row.low { padding-inline: 14px; }
+}
+/* تفضيل تقليل الحركة: لا ارتفاع ولا ميل، فقط توهّج خفيف */
+@media (prefers-reduced-motion: reduce) {
+  .sp { --lift: 0px !important; transition: filter .3s, opacity .3s !important; transition-delay: 0s !important; }
+  .rv.in .shelf .sp:hover, .rv.in .shelf .sp.on { --tilt: 0deg; filter: drop-shadow(9px 7px 7px rgba(0,0,0,.5)) brightness(1.18); }
+}
+.si { text-align: center; max-width: 620px; margin: 44px auto 0; min-height: 120px; }
+.si h3 { font: 700 2rem 'Aref Ruqaa'; color: #e8cf97; margin: 0; }
+.si p { font: 300 1.08rem/1.9 'Tajawal'; color: #cdbf9f; margin: 0; }
+.si.flip { animation: fi .7s both; }
+@keyframes fi { from { opacity: 0; transform: translateY(14px); } }
+
+/* ---------- حالات «لا يوجد بعد» الصادقة ---------- */
+.empty { max-width: 580px; margin: 0 auto; text-align: center; border: 1px dashed var(--gold); padding: 34px 26px; color: var(--muted); font: 300 1.05rem/1.95 'Tajawal'; }
+.empty div { font-size: 1.6rem; color: var(--gold); }
+.dk .empty { color: #bdb192; }
+.grid3 .empty { grid-column: 1 / -1; width: 100%; }
+.vs { font: 1.3rem/2.1 'Aref Ruqaa'; }
+.jn { text-align: center; margin-top: 34px; }
+
+/* ---------- بطاقة «أعمال مميزة» رابط كامل ---------- */
+a.sl { display: block; text-decoration: none; cursor: pointer; }
+.sl:hover .more { color: #e8cf97; }
+
+/* ---------- صفحة المعرض ---------- */
+.hero.sub { height: auto; min-height: 300px; padding-block: 70px 60px; }
+.pg-gal { grid-template-columns: repeat(auto-fill, minmax(300px, 400px)); justify-content: center; }
+.cta-card { max-width: 620px; margin: 64px auto 0; text-align: center; border: 1px dashed var(--gold); padding: 34px 24px; }
+.cta-card h2 { font: 700 1.9rem 'Aref Ruqaa'; margin: 0; }
+.cta-card p { font: 300 1rem 'Tajawal'; color: var(--muted); margin: 6px 0 18px; }
